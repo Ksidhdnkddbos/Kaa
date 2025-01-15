@@ -14,6 +14,14 @@ import time
 import config
 import asyncio
 
+def get_cookies_file():
+    folder_path = f"{os.getcwd()}/cookies"
+    txt_files = glob.glob(os.path.join(folder_path, '*.txt'))
+    if not txt_files:
+        raise FileNotFoundError("No .txt files found in the specified folder.")
+    cookie_txt_file = random.choice(txt_files)
+    return cookie_txt_file
+
 @app.on_message(command(["شغلنا", "play", "شغل", "تشغيل"]))
 async def _aPlay(_, message):
     start_time = time.time()
